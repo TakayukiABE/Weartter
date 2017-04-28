@@ -43,7 +43,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         if (statuses == null) {
             return 5;
         } else {
-            return 30;
+            return statuses.size();
         }
     }
 
