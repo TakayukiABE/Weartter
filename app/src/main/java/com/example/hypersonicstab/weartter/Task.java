@@ -15,6 +15,7 @@ import twitter4j.TwitterException;
 public class Task extends AsyncTask<Integer, Integer, Integer> {
     private MainActivity mainActivity;
     private Twitter twitter;
+    private List<twitter4j.Status> statuses;
 
     // コンストラクター
     public Task(MainActivity activity, Twitter twitter){
@@ -27,7 +28,7 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
     @Override
     protected Integer doInBackground(Integer... params) {
 
-        List<twitter4j.Status> statuses = null;
+        statuses = null;
         try {
             statuses = twitter.getHomeTimeline();
         } catch (TwitterException e) {
@@ -68,6 +69,7 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
     // 非同期処理が終了後、結果をメインスレッドに返す
     @Override
     protected void onPostExecute(Integer result) {
-
+        Log.d("Task.statuses", String.valueOf(statuses));
+        mainActivity.callback(statuses);
     }
 }
