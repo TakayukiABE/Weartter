@@ -8,16 +8,19 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="50px"
+        android:layout_gravity="center_vertical"
         android:layout_height="50px" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="100px"
+        android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />

@@ -52,7 +52,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         if (statuses == null) {
-            return 5;
+            return 0;
         } else {
             return statuses.size();
         }
@@ -74,6 +74,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             String text = (String) statuses.get(position).getText();
             holder.user.setText(user);
             holder.text.setText(text);
+            holder.icon.setImageResource(0);
 
 
             IconGetTask iconGetTask = new IconGetTask(holder.icon, iconUrlString);
