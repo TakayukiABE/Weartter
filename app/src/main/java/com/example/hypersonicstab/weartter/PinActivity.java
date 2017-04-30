@@ -1,5 +1,7 @@
 package com.example.hypersonicstab.weartter;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
@@ -47,10 +49,17 @@ public class PinActivity extends WearableActivity {
                             AccessToken accessToken = twitter.getOAuthAccessToken(pinTask.requestToken, editText.getText().toString());
                             Log.d("accessToken", String.valueOf(accessToken));
                             twitter.verifyCredentials();
+
+                            SharedPreferences dataStore = getSharedPreferences("account1", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = dataStore.edit();
+                            editor.putString("token", accessToken.getToken());
+                            editor.putString("tokenSecret", accessToken.getTokenSecret());
+                            editor.commit();
+                            Intent intent = new Intent(PinActivity.this, MainActivity.class);
+                            startActivity(intent);
                         } catch (TwitterException e) {
                             e.printStackTrace();
                         }
-
                         return null;
                     }
                 };
