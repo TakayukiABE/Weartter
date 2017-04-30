@@ -1,5 +1,7 @@
 package com.example.hypersonicstab.weartter;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import twitter4j.AccountSettings;
@@ -49,6 +51,7 @@ public class MyListener implements TwitterListener {
     @Override
     public void gotHomeTimeline(ResponseList<Status> responseList) {
         mainActivity.callback(responseList);
+        Log.d("called CALLBACK", "");
     }
 
     @Override

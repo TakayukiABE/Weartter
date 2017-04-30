@@ -12,6 +12,7 @@ import twitter4j.AsyncTwitterFactory;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
+import twitter4j.TwitterAdapter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.TwitterListener;
@@ -22,6 +23,7 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
     private Twitter twitter;
     private AccessToken token;
     private List<twitter4j.Status> statuses;
+    MyListener myListener;
 
     // コンストラクター
     public Task(MainActivity activity, AccessToken token){
@@ -38,8 +40,18 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
         AsyncTwitter asyncTwitter = AsyncTwitterFactory.getSingleton();
         asyncTwitter.setOAuthAccessToken(token);
 
-        MyListener myListener = new MyListener(mainActivity);
-        asyncTwitter.addListener(myListener);
+        myListener = new MyListener(mainActivity);
+        TwitterListener listener = new TwitterAdapter() {
+            @Override
+            public void gotHomeTimeline(ResponseList<twitter4j.Status> statuses) {
+                //super.gotHomeTimeline(statuses);
+                this.notify();
+                mainActivity.callback(statuses);
+                Log.d("gotHomeTimeLine", "homeTimeLine");
+            }
+        };
+        //asyncTwitter.addListener(myListener);
+        asyncTwitter.addListener(listener);
         asyncTwitter.getHomeTimeline();
 
         statuses = null;
@@ -87,7 +99,7 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
     // 非同期処理が終了後、結果をメインスレッドに返す
     @Override
     protected void onPostExecute(Integer result) {
-        Log.d("Task.statuses", String.valueOf(statuses));
-        mainActivity.callback(statuses);
+        //Log.d("Task.statuses", String.valueOf(statuses));
+        //mainActivity.callback(statuses);
     }
 }
