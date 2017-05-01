@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_android1"
+        android:icon="@drawable/ic_cc_checkmark"
+        android:title="Android1" />
+    <item
+        android:id="@+id/menu_android2"
+        android:icon="@drawable/ic_cc_checkmark"
+        android:title="Android2" />
+    <item
+        android:id="@+id/menu_android3"
+        android:icon="@drawable/ic_cc_checkmark"
+        android:title="Android3" />
+</menu>
