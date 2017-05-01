@@ -42,7 +42,6 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
         AsyncTwitter asyncTwitter = AsyncTwitterFactory.getSingleton();
         asyncTwitter.setOAuthAccessToken(token);
 
-        //myListener = new MyListener(mainActivity);
         TwitterListener listener = new TwitterAdapter() {
             @Override
             public void gotHomeTimeline(final ResponseList<twitter4j.Status> statuses) {

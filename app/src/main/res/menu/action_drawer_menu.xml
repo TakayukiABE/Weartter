@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_android1"
-        android:icon="@drawable/ic_cc_checkmark"
+        android:icon="@android:drawable/ic_menu_edit"
         android:title="Android1" />
     <item
         android:id="@+id/menu_android2"

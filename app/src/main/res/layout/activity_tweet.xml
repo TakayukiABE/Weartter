@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/tweet"
         android:inputType="text"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
