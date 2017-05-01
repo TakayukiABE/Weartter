@@ -25,7 +25,7 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
     private Twitter twitter;
     private AccessToken token;
     private List<twitter4j.Status> statuses;
-    MyListener myListener;
+
 
     // コンストラクター
     public Task(MainActivity activity, AccessToken token){

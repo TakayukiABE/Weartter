@@ -28,6 +28,7 @@ public class PinActivity extends WearableActivity {
         if (account1.getString("token", null) != null) {
             Intent intent = new Intent(PinActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
         }else {
 
 
