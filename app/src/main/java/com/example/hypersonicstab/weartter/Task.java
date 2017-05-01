@@ -1,6 +1,8 @@
 package com.example.hypersonicstab.weartter;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.example.hypersonicstab.weartter.MainActivity;
@@ -40,14 +42,22 @@ public class Task extends AsyncTask<Integer, Integer, Integer> {
         AsyncTwitter asyncTwitter = AsyncTwitterFactory.getSingleton();
         asyncTwitter.setOAuthAccessToken(token);
 
-        myListener = new MyListener(mainActivity);
+        //myListener = new MyListener(mainActivity);
         TwitterListener listener = new TwitterAdapter() {
             @Override
-            public void gotHomeTimeline(ResponseList<twitter4j.Status> statuses) {
+            public void gotHomeTimeline(final ResponseList<twitter4j.Status> statuses) {
                 //super.gotHomeTimeline(statuses);
-                this.notify();
-                mainActivity.callback(statuses);
                 Log.d("gotHomeTimeLine", "homeTimeLine");
+                Log.d("mainActivity", String.valueOf(mainActivity));
+                Handler mHandler = new Handler(Looper.getMainLooper());
+
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainActivity.callback(statuses);
+                    }
+                });
+                //mainActivity.callback(statuses);
             }
         };
         //asyncTwitter.addListener(myListener);
