@@ -5,7 +5,7 @@ Android学習のためにWearOSで動作するTwitterクライアントを作成
 - 初回のみPINによりアプリケーション連携の認証を行う．
 - ホームタイムラインの取得，新規ツイートが可能
 
-# ScreenShots
+# Screenhots
 
 ![screenshot_1547286142](https://user-images.githubusercontent.com/7589604/51072339-58b0b700-16a2-11e9-9107-fe8fdd558674.png)
 
