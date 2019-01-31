@@ -43,10 +43,13 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+
 public class MainActivity extends WearableActivity implements WearableActionDrawer.OnMenuItemClickListener {
 
-    private final String API_KEY = "";
-    private final String API_SECRET = "";
+    private String API_KEY = "";
+    private String API_SECRET = "";
 
     private AccessToken accessToken;
 
@@ -94,6 +97,15 @@ public class MainActivity extends WearableActivity implements WearableActionDraw
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try{
+            ApplicationInfo info
+                    = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            API_KEY = info.metaData.getString("apiKey");
+            API_SECRET = info.metaData.getString("apiSecret");
+        }catch(PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_main);
         setAmbientEnabled();
 

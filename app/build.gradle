@@ -14,6 +14,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [api_key: System.getenv("APIKEY"),
+                                    api_secret: System.getenv("APISECRET"),
+                                    access_token: System.getenv("ACCESSTOKEN"),
+                                    access_token_secret: System.getenv("ACCESSTOKENSECRET")]
         }
     }
     productFlavors {
